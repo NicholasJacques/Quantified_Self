@@ -12,9 +12,20 @@
   <script type="text/javascript" src="/lib/food.js"></script>
 </head>
 <body>
-
   <div class="container">
     <div class="row justify-content-right">
+      <form class="form-inline">
+        <div class="form-group">
+          <label for="food-name">Food Name</label>
+          <input type="text" class="form-control" id="new-food-name" placeholder="Carrots">
+        </div>
+        <div class="form-group">
+          <label for="food-calories">Calories</label>
+          <input type="number" class="form-control" id="new-food-calories" placeholder="300">
+        </div>
+        <button type="submit" class="btn btn-default" id="new-food-submit">Add Food</button>
+      </form>
+
       <div class="">
         <table class='table table-hover' id="food-table">
           <thead>
@@ -28,6 +39,8 @@
 
           </tbody>
         </table>
+
+        
 
       </div>
     </div>
