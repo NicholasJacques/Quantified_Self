@@ -26,12 +26,31 @@ test.describe('testing foods.html front end', function () {
     driver.get(`${frontEndLocation}/index.html`)
     driver.findElements({css: ".meal-table"})
     .then(function (tables){
-      assert.equal(tables.length, 3)
+      assert.equal(tables.length, 4)
     })
     driver.get(`${frontEndLocation}/`)
     driver.findElements({css: ".meal-table"})
     .then(function (tables){
-      assert.equal(tables.length, 3)
+      assert.equal(tables.length, 4)
     })
   })
+
+  test.it('has a goal calories for each meal', function () {
+    // Each meal table has Total Calories below, which is the sum of calories for each food in that meal
+    driver.get(`${frontEndLocation}/index.html`)
+    driver.findElement({css: "#breakfast"}).getText()
+    .then(function (meal){
+      assert.include(meal, "Total Calories")
+    })
+  })
+
+  test.it('has a remaining calories for each meal', function () {
+    // Each meal table has Total Calories below, which is the sum of calories for each food in that meal
+    driver.get(`${frontEndLocation}/index.html`)
+    driver.findElement({css: "#breakfast"}).getText()
+    .then(function (meal){
+      assert.include(meal, "Remaining Calories")
+    })
+  })
+
 })
