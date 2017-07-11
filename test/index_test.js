@@ -44,4 +44,13 @@ test.describe('testing foods.html front end', function () {
     })
   })
 
+  test.it('has a remaining calories for each meal', function () {
+    // Each meal table has Total Calories below, which is the sum of calories for each food in that meal
+    driver.get(`${frontEndLocation}/index.html`)
+    driver.findElement({css: "#breakfast"}).getText()
+    .then(function (meal){
+      assert.include(meal, "Remaining Calories")
+    })
+  })
+
 })
