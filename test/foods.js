@@ -19,7 +19,7 @@ test.describe('testing foods.html front end', function () {
   test.afterEach(function () {
     driver.quit()
   })
-
+  
   test.it('has a table with all of the foods', function () {
     // If I visit foods.html, I should see a table of all my foods, with Name, Calories and a delete icon for each food
     driver.get(`${frontEndLocation}/foods.html`)
@@ -66,5 +66,30 @@ test.describe('testing foods.html front end', function () {
     driver.findElements({css: "tr"}).then(function(data) {
       assert.equal(data.length, 5)
     })
+  })
+
+  test.it("The food order persists across refresh", function () {
+    let last
+    let first
+    driver.get(`${frontEndLocation}/foods.html`)
+    driver.findElements({css: "tbody tr"})
+    .then(function (data) {
+      data.slice(-1)[0].getText().then(function (data){
+        last = data
+      })
+      data[0].getText().then(function (data){
+        first = data
+      })
+    })
+  driver.get(`${frontEndLocation}/foods.html`)
+  driver.findElements({css: "tbody tr"})
+  .then(function (data) {
+    data.slice(-1)[0].getText().then(function (data){
+      assert.equal(last, data)
+    })
+    data[0].getText().then(function (data){
+      assert.equal(first, data)
+    })
+  })
   })
 })
