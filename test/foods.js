@@ -145,8 +145,20 @@ test.describe('testing foods.html front end', function () {
 
   test.it("name changes to an input box when clicked on", function() {
     driver.get(`${frontEndLocation}/foods.html`)
-    //content editable
-  })
-
+    driver.wait(until.elementLocated({css: "tr[id='1'] button"}))
+    driver.findElement({css: "tr[id='1'] td.name"})
+    .click()
+    driver.findElement({css: "tr[id='1'] td.name"})
+    .sendKeys("")
+    driver.findElement({css: "tr[id='1'] td.name"})
+    .sendKeys("cheeseburger")
+    driver.findElement({css: 'div.container'})
+    .click()
+    driver.findElement({css: "tr[id='1'] td.name"}).getText()
+    .then(function (data) {
+      expect(data).to.not.include("Cheesestick")
+      expect(data).to.include("cheeseburger")      
+    })
+  }) 
 })
 
