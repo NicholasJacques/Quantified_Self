@@ -38,7 +38,6 @@ test.describe('testing foods.html front end', function () {
 
   test.it("can create a food by filling in form", function() {
     // When I visit foods.html, I can enter a name and calorie amount, and create a new food by clicking "Add Food"
-
     driver.get(`${frontEndLocation}/foods.html`)
     driver.findElement({css: "input[id='new-food-name']"})
     .sendKeys("Cheesestick")
@@ -51,6 +50,21 @@ test.describe('testing foods.html front end', function () {
     .then(function (food) {
       assert.include(food, 'Cheesestick')
       assert.include(food, '300')
+    })
+  })
+
+  test.it("can delete a food by click the trash can", function() {
+    driver.get(`${frontEndLocation}/foods.html`)
+    driver.wait(until.elementLocated({css: "tr[id='5'] button"}))
+    driver.findElement({css: "tr[id='5'] button.delete"})
+    .click()
+    driver.wait(function(){
+      return driver.findElements({css: "tr"}).then(function (trs){
+        return trs.length == 5
+      })
+    })
+    driver.findElements({css: "tr"}).then(function(data) {
+      assert.equal(data.length, 5)
     })
   })
 })
