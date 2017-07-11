@@ -1,4 +1,5 @@
 const assert    = require('chai').assert
+const expect    = require('chai').expect 
 const webdriver = require('selenium-webdriver')
 const until = webdriver.until
 const test      = require('selenium-webdriver/testing')
@@ -81,15 +82,66 @@ test.describe('testing foods.html front end', function () {
         first = data
       })
     })
-  driver.get(`${frontEndLocation}/foods.html`)
-  driver.findElements({css: "tbody tr"})
-  .then(function (data) {
-    data.slice(-1)[0].getText().then(function (data){
-      assert.equal(last, data)
-    })
-    data[0].getText().then(function (data){
-      assert.equal(first, data)
+    driver.get(`${frontEndLocation}/foods.html`)
+    driver.findElements({css: "tbody tr"})
+    .then(function (data) {
+      data.slice(-1)[0].getText().then(function (data){
+        assert.equal(last, data)
+      })
+      data[0].getText().then(function (data){
+        assert.equal(first, data)
+      })
     })
   })
+
+  test.it("flashes an error message if the name field is lef empty", function () {
+    driver.get(`${frontEndLocation}/foods.html`)
+    driver.findElement({css: "input[id='new-food-calories']"})
+    .sendKeys("300")
+    driver.findElement({css: "button[type=submit]"})
+    .click()
+
+    driver.wait(until.elementLocated({css: "p[class='errors']"})).getText()
+    .then(function (errors) {
+      assert.include(errors, 'Please enter a food Name')
+    })
+  })
+
+  test.it("flashes an error message if the calories field is left empty", function () {
+    driver.get(`${frontEndLocation}/foods.html`)
+    driver.findElement({css: "input[id='new-food-name']"})
+    .sendKeys("Cheesestick")
+    driver.findElement({css: "button[type=submit]"})
+    .click()
+
+    driver.wait(until.elementLocated({css: "p[class='errors']"})).getText()
+    .then(function (errors) {
+      assert.include(errors, 'Please enter a calorie amount')
+    })
+  })
+
+  test.it("clears errors when food is successfuly created", function() {
+    driver.get(`${frontEndLocation}/foods.html`)
+    driver.findElement({css: "input[id='new-food-name']"})
+    .sendKeys("Cheesestick")
+    driver.findElement({css: "button[type=submit]"})
+    .click()
+
+    driver.wait(until.elementLocated({css: "p[class='errors']"})).getText()
+    .then(function (errors) {
+      driver.findElement({css: "input[id='new-food-calories']"})
+      .sendKeys("300")
+      driver.findElement({css: "button[type=submit]"})
+      .click()
+// kill me now
+      driver.wait(until.elementLocated({css: "tr[id='6']"})).getText()
+      .then(function () {
+          driver.findElement({css: "#new-food-form"}).getText()
+          .then(function (data) {
+            expect(data).to.not.include("Please enter a calorie amount")
+          })
+      })
+    })
   })
 })
+
