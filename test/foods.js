@@ -34,7 +34,6 @@ test.describe('testing foods.html front end', function () {
       assert.include(food, 'banana')
       assert.include(food, '80')
     })
-
   })
 
   test.it("can create a food by filling in form", function() {
@@ -133,7 +132,7 @@ test.describe('testing foods.html front end', function () {
       .sendKeys("300")
       driver.findElement({css: "button[type=submit]"})
       .click()
-// kill me now
+      // kill me now
       driver.wait(until.elementLocated({css: "tr[id='6']"})).getText()
       .then(function () {
           driver.findElement({css: "#new-food-form"}).getText()
@@ -143,5 +142,11 @@ test.describe('testing foods.html front end', function () {
       })
     })
   })
+
+  test.it("name changes to an input box when clicked on", function() {
+    driver.get(`${frontEndLocation}/foods.html`)
+    //content editable
+  })
+
 })
 
