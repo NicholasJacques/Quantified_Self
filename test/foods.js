@@ -6,7 +6,6 @@ const test      = require('selenium-webdriver/testing')
 const frontEndLocation = "http://localhost:8080"
 const pry = require('pryjs')
 
-
 test.describe('testing foods.html front end', function () {
   var driver
   this.timeout(1000000)
@@ -161,4 +160,3 @@ test.describe('testing foods.html front end', function () {
     })
   }) 
 })
-
