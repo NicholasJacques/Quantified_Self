@@ -16,6 +16,30 @@
 <body>
   <div class="container">
     <div class="row justify-content-right" id="meal-tables">
+      <div class="col">
+        <table class='table table-hover meal-table' id="breakfast">
+
+        </table>
+
+      </div>
+      <div class="col">
+        <table class='table table-hover meal-table' id="lunch">
+
+        </table>
+
+      </div>
+      <div class="col">
+        <table class='table table-hover meal-table' id="dinner">
+
+        </table>
+
+      </div>
+      <div class="col">
+        <table class='table table-hover meal-table' id="snacks">
+
+        </table>
+
+      </div>
 
 
 
@@ -34,6 +58,30 @@
           </tbody>
         </table>
       </div>
+      <div class="row justify-content-right" id="food-table">
+        <table class="table table-hover">
+          <thead>
+            <tr>
+              <td><h2>Foods</h2></td>
+            </tr>
+            <tr>
+              <td></td>
+              <td>Name</td>
+              <td>Calories</td>
+            </tr>
+          </thead>
+          <tbody>
+
+          </tbody>
+          <a href="/foods.html"> <button type="button" class='btn btn-success'>Create new food</button></a>
+        </table>
+        <h3>Add selected to:</h3>
+        <button type="button" class="btn btn-danger add-food" data-meal='Breakfast' name="button">Breakfast</button>
+        <button type="button" class="btn btn-danger add-food" data-meal='Lunch' name="button">Lunch</button>
+        <button type="button" class="btn btn-danger add-food" data-meal='Dinner' name="button">Dinner</button>
+        <button type="button" class="btn btn-danger add-food" data-meal='Snacks' name="button">Snacks</button>
+      </div>
+
     </div>
   </div>
 

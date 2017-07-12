@@ -70,5 +70,27 @@ test.describe('testing foods.html front end', function () {
       assert.include(html, "Goal Calories")
     })
   })
+  test.it('has foods table', function () {
+    // There is a Totals table for all meals, with Goal Calories, Calories Consumed and Remaining calories
+    driver.get(`${frontEndLocation}/index.html`)
+    let html = driver.findElement({css: "#food-table"}).getAttribute('outerHTML')
+    .then(function (html){
+      assert.include(html, "Food")
+      assert.include(html, "Calories")
+    })
+  })
+  test.it('can add foods to meal', function () {
+    // There is a Totals table for all meals, with Goal Calories, Calories Consumed and Remaining calories
+    driver.get(`${frontEndLocation}/index.html`)
+    let prevRows
+    driver.findElements({css: "#breakfast tr"}).then(function (rows){
+      prevRows = rows.length
+    })
+
+    driver.findElement({css: "#food-table input[type='checkbox']"}).click()
+    driver.findElement({css: "button.add-food"}).click()
+    driver.findElements({css: "#breakfast tr"}).then(function (rows){
+    })
+  })
 
 })
