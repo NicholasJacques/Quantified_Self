@@ -14,6 +14,9 @@
   <div class="container">
     <div class="row justify-content-right">
       <form class="form-inline" id="new-food-form">
+        <div class="form-header">
+          <h3>Add a food:</h3>
+        </div>
         <div class="form-group">
           <label for="food-name">Food Name</label>
           <input type="text" class="form-control" id="new-food-name" placeholder="Carrots">
@@ -25,22 +28,25 @@
         <button type="submit" class="btn btn-default" id="new-food-submit">Add Food</button>
       </form>
 
+      <form class="form-inline" id="filter-food-form">
+        <div class="form-group">
+          <label for="food-filter">Filter:</label>
+          <input type="text" class="form-control" id="filter-food-input" placeholder="Carrots">
+        </div>
+      </form>
+
       <div class="foods">
         <table class='table table-hover' id="food-table">
           <thead>
             <tr>
-              <th>Food</th>
-              <th>Calories</th>
+              <th style="width: 150px;">Food</th>
+              <th style="width: 150px;">Calories</th>
               <th>Delete</th>
             </tr>
           </thead>
           <tbody>
-
           </tbody>
         </table>
-
-        <p contenteditable="true">test</p>
-
       </div>
     </div>
   </div>
