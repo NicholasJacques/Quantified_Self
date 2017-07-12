@@ -1,11 +1,10 @@
 const assert    = require('chai').assert
-const expect    = require('chai').expect
+const expect    = require('chai').expect 
 const webdriver = require('selenium-webdriver')
 const until     = webdriver.until
 const test      = require('selenium-webdriver/testing')
 const frontEndLocation = "http://localhost:8080"
 const pry = require('pryjs')
-
 
 test.describe('testing foods.html front end', function () {
   var driver
@@ -20,7 +19,7 @@ test.describe('testing foods.html front end', function () {
   test.afterEach(function () {
     driver.quit()
   })
-
+  
   test.it('has a table with all of the foods', function () {
     // If I visit foods.html, I should see a table of all my foods, with Name, Calories and a delete icon for each food
     driver.get(`${frontEndLocation}/foods.html`)
@@ -34,7 +33,6 @@ test.describe('testing foods.html front end', function () {
       assert.include(food, 'banana')
       assert.include(food, '80')
     })
-
   })
 
   test.it("can create a food by filling in form", function() {
@@ -133,7 +131,7 @@ test.describe('testing foods.html front end', function () {
       .sendKeys("300")
       driver.findElement({css: "button[type=submit]"})
       .click()
-// kill me now
+      // kill me now
       driver.wait(until.elementLocated({css: "tr[id='6']"})).getText()
       .then(function () {
           driver.findElement({css: "#new-food-form"}).getText()
@@ -143,4 +141,22 @@ test.describe('testing foods.html front end', function () {
       })
     })
   })
+
+  test.it("name changes to an input box when clicked on", function() {
+    driver.get(`${frontEndLocation}/foods.html`)
+    driver.wait(until.elementLocated({css: "tr[id='1'] button"}))
+    driver.findElement({css: "tr[id='1'] td.name"})
+    .click()
+    driver.findElement({css: "tr[id='1'] td.name"})
+    .sendKeys("")
+    driver.findElement({css: "tr[id='1'] td.name"})
+    .sendKeys("cheeseburger")
+    driver.findElement({css: 'div.container'})
+    .click()
+    driver.findElement({css: "tr[id='1'] td.name"}).getText()
+    .then(function (data) {
+      expect(data).to.not.include("Cheesestick")
+      expect(data).to.include("cheeseburger")      
+    })
+  }) 
 })
