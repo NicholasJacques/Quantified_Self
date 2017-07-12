@@ -63,9 +63,11 @@ test.describe('testing foods.html front end', function () {
   test.it('has totals table', function () {
     // There is a Totals table for all meals, with Goal Calories, Calories Consumed and Remaining calories
     driver.get(`${frontEndLocation}/index.html`)
-    let html = driver.findElement({css: "#breakfast"}).getAttribute('outerHTML')
+    let html = driver.findElement({css: "#calorie-totals"}).getAttribute('outerHTML')
     .then(function (html){
-      assert.include(html, "danger")
+      assert.include(html, "Remaining Calories")
+      assert.include(html, "Total Calories")
+      assert.include(html, "Goal Calories")
     })
   })
 
