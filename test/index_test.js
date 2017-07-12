@@ -52,5 +52,21 @@ test.describe('testing foods.html front end', function () {
       assert.include(meal, "Remaining Calories")
     })
   })
+  test.it('has a remaining calories for each meal', function () {
+    // If Remaining Calories is less than zero, it should be colored Red
+    driver.get(`${frontEndLocation}/index.html`)
+    let html = driver.findElement({css: "#breakfast"}).getAttribute('outerHTML')
+    .then(function (html){
+      assert.include(html, "danger")
+    })
+  })
+  test.it('has totals table', function () {
+    // There is a Totals table for all meals, with Goal Calories, Calories Consumed and Remaining calories
+    driver.get(`${frontEndLocation}/index.html`)
+    let html = driver.findElement({css: "#breakfast"}).getAttribute('outerHTML')
+    .then(function (html){
+      assert.include(html, "danger")
+    })
+  })
 
 })
