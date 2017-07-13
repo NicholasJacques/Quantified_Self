@@ -24,6 +24,7 @@ test.describe('testing foods.html front end', function () {
   test.it('has a tables for each meal', function () {
     // When I visit index.html (or just /), I see tables for each meal for today
     driver.get(`${frontEndLocation}/index.html`)
+    driver.wait(until.elementLocated({css: "#breakfast"}))
     driver.findElements({css: ".meal-table"})
     .then(function (tables){
       assert.equal(tables.length, 4)
@@ -38,6 +39,7 @@ test.describe('testing foods.html front end', function () {
   test.it('has a goal calories for each meal', function () {
     // Each meal table has Total Calories below, which is the sum of calories for each food in that meal
     driver.get(`${frontEndLocation}/index.html`)
+    driver.wait(until.elementLocated({css: "#food-table-index input[type='checkbox']"}))
     driver.findElement({css: "#breakfast"}).getText()
     .then(function (meal){
       assert.include(meal, "Total Calories")
@@ -47,6 +49,7 @@ test.describe('testing foods.html front end', function () {
   test.it('has a remaining calories for each meal', function () {
     // Each meal table has Total Calories below, which is the sum of calories for each food in that meal
     driver.get(`${frontEndLocation}/index.html`)
+    driver.wait(until.elementLocated({css: "#food-table-index input[type='checkbox']"}))
     driver.findElement({css: "#breakfast"}).getText()
     .then(function (meal){
       assert.include(meal, "Remaining Calories")
@@ -55,6 +58,7 @@ test.describe('testing foods.html front end', function () {
   test.it('has a remaining calories for each meal', function () {
     // If Remaining Calories is less than zero, it should be colored Red
     driver.get(`${frontEndLocation}/index.html`)
+    driver.wait(until.elementLocated({css: "#food-table-index input[type='checkbox']"}))
     let html = driver.findElement({css: "#breakfast"}).getAttribute('outerHTML')
     .then(function (html){
       assert.include(html, "danger")
@@ -63,6 +67,7 @@ test.describe('testing foods.html front end', function () {
   test.it('has totals table', function () {
     // There is a Totals table for all meals, with Goal Calories, Calories Consumed and Remaining calories
     driver.get(`${frontEndLocation}/index.html`)
+    driver.wait(until.elementLocated({css: "#food-table-index input[type='checkbox']"}))
     let html = driver.findElement({css: "#calorie-totals"}).getAttribute('outerHTML')
     .then(function (html){
       assert.include(html, "Remaining Calories")
@@ -73,6 +78,7 @@ test.describe('testing foods.html front end', function () {
   test.it('has foods table', function () {
     // There is a Totals table for all meals, with Goal Calories, Calories Consumed and Remaining calories
     driver.get(`${frontEndLocation}/index.html`)
+    driver.wait(until.elementLocated({css: "#food-table-index input[type='checkbox']"}))
     let html = driver.findElement({css: "#food-table-index"}).getAttribute('outerHTML')
     .then(function (html){
       assert.include(html, "Food")
@@ -82,6 +88,7 @@ test.describe('testing foods.html front end', function () {
   test.it('can add foods to meal', function () {
     // There is a Totals table for all meals, with Goal Calories, Calories Consumed and Remaining calories
     driver.get(`${frontEndLocation}/index.html`)
+    driver.wait(until.elementLocated({css: "#food-table-index input[type='checkbox']"}))
     let prevRows
     driver.findElements({css: "#breakfast tr"}).then(function (rows){
       prevRows = rows.length
