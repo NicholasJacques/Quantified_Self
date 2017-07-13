@@ -3,7 +3,7 @@ const expect    = require('chai').expect
 const webdriver = require('selenium-webdriver')
 const until     = webdriver.until
 const test      = require('selenium-webdriver/testing')
-const frontEndLocation = "http://localhost:8080"
+const frontEndLocation = "https://jwpincus.github.io"
 const pry = require('pryjs')
 
 test.describe('testing foods.html front end', function () {
