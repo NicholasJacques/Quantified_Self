@@ -38,6 +38,7 @@
     "webpack-dev-server": "^1.16.2"
   },
   "dependencies": {
+    "async": "^2.5.0",
     "bootstrap": "^3.3.7",
     "fs": "0.0.1-security",
     "process-nextick-args": "^1.0.7",

@@ -23,6 +23,7 @@ test.describe('testing foods.html front end', function () {
   test.it('has a table with all of the foods', function () {
     // If I visit foods.html, I should see a table of all my foods, with Name, Calories and a delete icon for each food
     driver.get(`${frontEndLocation}/foods.html`)
+    driver.wait(until.elementLocated({css: "tr[id='1'] button"}))
     driver.wait(until.elementLocated({css: "#food-table"}))
     driver.findElements({css: "tr"})
     .then(function (food) {
@@ -38,6 +39,7 @@ test.describe('testing foods.html front end', function () {
   test.it("can create a food by filling in form", function() {
     // When I visit foods.html, I can enter a name and calorie amount, and create a new food by clicking "Add Food"
     driver.get(`${frontEndLocation}/foods.html`)
+    driver.wait(until.elementLocated({css: "tr[id='1'] button"}))
     driver.findElement({css: "input[id='new-food-name']"})
     .sendKeys("Cheesestick")
     driver.findElement({css: "input[id='new-food-calories']"})
@@ -71,29 +73,21 @@ test.describe('testing foods.html front end', function () {
     let last
     let first
     driver.get(`${frontEndLocation}/foods.html`)
-    driver.findElements({css: "tbody tr"})
+    driver.wait(until.elementLocated({css: "tr[id='1'] button"}))
+    driver.findElements({css: "tbody tr[id='1']"})
     .then(function (data) {
-      data.slice(-1)[0].getText().then(function (data){
-        last = data
-      })
-      data[0].getText().then(function (data){
-        first = data
-      })
+
     })
     driver.get(`${frontEndLocation}/foods.html`)
-    driver.findElements({css: "tbody tr"})
+    driver.findElements({css: "tbody tr[id='1']"})
     .then(function (data) {
-      data.slice(-1)[0].getText().then(function (data){
-        assert.equal(last, data)
-      })
-      data[0].getText().then(function (data){
-        assert.equal(first, data)
-      })
+      assert.equal(last, first)
     })
   })
 
   test.it("flashes an error message if the name field is lef empty", function () {
     driver.get(`${frontEndLocation}/foods.html`)
+    driver.wait(until.elementLocated({css: "tr[id='1'] button"}))
     driver.findElement({css: "input[id='new-food-calories']"})
     .sendKeys("300")
     driver.findElement({css: "button[type=submit]"})
@@ -107,6 +101,7 @@ test.describe('testing foods.html front end', function () {
 
   test.it("flashes an error message if the calories field is left empty", function () {
     driver.get(`${frontEndLocation}/foods.html`)
+    driver.wait(until.elementLocated({css: "tr[id='1'] button"}))
     driver.findElement({css: "input[id='new-food-name']"})
     .sendKeys("Cheesestick")
     driver.findElement({css: "button[type=submit]"})
@@ -120,6 +115,7 @@ test.describe('testing foods.html front end', function () {
 
   test.it("clears errors when food is successfuly created", function() {
     driver.get(`${frontEndLocation}/foods.html`)
+    driver.wait(until.elementLocated({css: "tr[id='1'] button"}))
     driver.findElement({css: "input[id='new-food-name']"})
     .sendKeys("Cheesestick")
     driver.findElement({css: "button[type=submit]"})
@@ -144,6 +140,7 @@ test.describe('testing foods.html front end', function () {
 
   test.it("name changes to an input box when clicked on", function() {
     driver.get(`${frontEndLocation}/foods.html`)
+
     driver.wait(until.elementLocated({css: "tr[id='1'] button"}))
     driver.findElement({css: "tr[id='1'] td.name"})
     .click()
