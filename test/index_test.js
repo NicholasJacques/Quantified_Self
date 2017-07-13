@@ -73,7 +73,7 @@ test.describe('testing foods.html front end', function () {
   test.it('has foods table', function () {
     // There is a Totals table for all meals, with Goal Calories, Calories Consumed and Remaining calories
     driver.get(`${frontEndLocation}/index.html`)
-    let html = driver.findElement({css: "#food-table"}).getAttribute('outerHTML')
+    let html = driver.findElement({css: "#food-table-index"}).getAttribute('outerHTML')
     .then(function (html){
       assert.include(html, "Food")
       assert.include(html, "Calories")
@@ -87,7 +87,7 @@ test.describe('testing foods.html front end', function () {
       prevRows = rows.length
     })
 
-    driver.findElement({css: "#food-table input[type='checkbox']"}).click()
+    driver.findElement({css: "#food-table-index input[type='checkbox']"}).click()
     driver.findElement({css: "button.add-food"}).click()
     driver.findElements({css: "#breakfast tr"}).then(function (rows){
     })
