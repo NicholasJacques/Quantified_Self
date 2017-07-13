@@ -1,5 +1,5 @@
 const assert    = require('chai').assert
-const expect    = require('chai').expect 
+const expect    = require('chai').expect
 const webdriver = require('selenium-webdriver')
 const until     = webdriver.until
 const test      = require('selenium-webdriver/testing')
@@ -19,7 +19,7 @@ test.describe('testing foods.html front end', function () {
   test.afterEach(function () {
     driver.quit()
   })
-  
+
   test.it('has a table with all of the foods', function () {
     // If I visit foods.html, I should see a table of all my foods, with Name, Calories and a delete icon for each food
     driver.get(`${frontEndLocation}/foods.html`)
@@ -156,7 +156,7 @@ test.describe('testing foods.html front end', function () {
     driver.findElement({css: "tr[id='1'] td.name"}).getText()
     .then(function (data) {
       expect(data).to.not.include("Cheesestick")
-      expect(data).to.include("cheeseburger")      
+      expect(data).to.include("cheeseburger")
     })
-  }) 
+  })
 })
