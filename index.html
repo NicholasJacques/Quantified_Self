@@ -18,25 +18,74 @@
     <div class="row justify-content-right" id="meal-tables">
       <div class="col">
         <table class='table table-hover meal-table' id="breakfast">
-
+          <thead>
+          <tr>
+          <th><h2>Breakfast</h2></th>
+          </tr>
+          <tr>
+          <th>Name</th>
+          <th>Calories</th>
+          <th></th>
+          </tr>
+          </thead>
+          <tbody>
+          </tbody>
         </table>
 
       </div>
       <div class="col">
         <table class='table table-hover meal-table' id="lunch">
+          <thead>
+          <tr>
+          <th><h2>Lunch</h2></th>
+          </tr>
+          <tr>
+          <th>Name</th>
+          <th>Calories</th>
+          <th></th>
+          </tr>
+          </thead>
+          <tbody>
 
+          </tbody>
         </table>
 
       </div>
       <div class="col">
         <table class='table table-hover meal-table' id="dinner">
+          <thead>
+          <tr>
+          <th><h2>Dinner</h2></th>
+          </tr>
+          <tr>
+          <th>Name</th>
+          <th>Calories</th>
+          <th></th>
+          </tr>
+          </thead>
+          <tbody>
 
+          </tbody>
         </table>
 
       </div>
       <div class="col">
         <table class='table table-hover meal-table' id="snacks">
+          <thead>
+          <tr>
+          <th><h2>Snacks</h2></th>
+          </tr>
+          <tr>
+          <th>Name</th>
+          <th>Calories</th>
+          <th></th>
+          </tr>
+          </thead>
+          <tbody>
+            <tr>
 
+            </tr>
+          </tbody>
         </table>
 
       </div>
@@ -58,7 +107,14 @@
           </tbody>
         </table>
       </div>
-      <div class="row justify-content-right" id="food-table">
+
+      <div class="row justify-content-right" id="food-table-index">
+        <form class="form-inline" id="filter-food-form">
+          <div class="form-group">
+            <label for="food-filter">Filter:</label>
+            <input type="text" class="form-control" id="filter-food-index-input" placeholder="Carrots">
+          </div>
+        </form>
         <table class="table table-hover">
           <thead>
             <tr>
@@ -67,7 +123,7 @@
             <tr>
               <td></td>
               <td>Name</td>
-              <td>Calories</td>
+              <td id="calories-header">Calories</td>
             </tr>
           </thead>
           <tbody>
@@ -85,6 +141,6 @@
     </div>
   </div>
 
-  <script src="lib/index.js"></script>
+  <script src="main.bundle.js"></script>
 </body>
 </html>
